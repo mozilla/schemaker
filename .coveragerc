@@ -1,0 +1,11 @@
+[run]
+source = api
+branch = True
+data_file = /tmp/.coverage
+
+[report]
+omit =
+    tests/*
+
+[xml]
+output = /tmp/coverage.xml
