@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+set -eo pipefail
+
+# pass CI env vars into docker containers for codecov submission
+[ ! -z ${CI+check} ] && \
+    echo "Getting Codecov environment variables" && \
+    export CI_ENV=`bash <(curl -s https://codecov.io/env)`
+
+# run docker compose with the given environment variables
+docker-compose run $CI_ENV web test

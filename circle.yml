@@ -23,4 +23,4 @@ dependencies:
 
 test:
   override:
-    - docker-compose run web test
+    - ./bin/test
