@@ -28,7 +28,7 @@ RUN apt-get update && \
 COPY requirements.txt /tmp/
 # Switch to /tmp to install dependencies outside home dir.
 WORKDIR /tmp
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip3 install --no-cache-dir -r requirements.txt
 
 # Switch back to home directory.
 WORKDIR /app
