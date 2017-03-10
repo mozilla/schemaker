@@ -17,6 +17,7 @@ RUN mkdir /app && \
 # Install a few essentials and clean apt caches afterwards.
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
+        apt-transport-https \
         build-essential \
         curl \
         git && \
@@ -24,11 +25,24 @@ RUN apt-get update && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
+# Install node.js.
+RUN curl -sL https://deb.nodesource.com/setup_6.x | bash - && \
+    apt-get install -y nodejs
+
 # Install Python dependencies.
 COPY requirements.txt /tmp/
 # Switch to /tmp to install dependencies outside home dir.
 WORKDIR /tmp
 RUN pip3 install --no-cache-dir -r requirements.txt
+
+# Install nodejs dependencies.
+RUN mkdir -p /opt/npm /opt/static && \
+    chown -R 10001:10001 /opt
+COPY package.json /opt/npm/
+WORKDIR /opt/npm
+RUN npm install && \
+    chown -R 10001:10001 /opt/npm && \
+    npm cache clean
 
 # Switch back to home directory.
 WORKDIR /app
