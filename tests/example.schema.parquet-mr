@@ -1,0 +1,6 @@
+message Product {
+    required int64 id;
+    required binary name (UTF8);
+    required double price;
+    optional binary tags (UTF8);
+}

@@ -30,3 +30,26 @@ Run the tests using the following command on your computer:
 
 This will spin up a Docker container to run the tests, so please set up
 the development setup first.
+
+
+API Endpoints
+=============
+
+### `POST /convert`
+
+Converts the provided schema to the requested output schema.
+
+Query parameters:
+
+* `output` (required): The requested output format. Currently the only format
+  supported is 'parquet-mr'.
+
+Provide the input schema as the body of the POST request.
+
+Example output:
+```
+{
+  "parquet-mr": "<full output of schema>"
+}
+```
+
