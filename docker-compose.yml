@@ -9,4 +9,6 @@ services:
       - "8000:8000"
     volumes:
       - $PWD:/app
+    environment:
+      JSONSCHEMA_PARQUET_PATH: "/opt/npm/node_modules/.bin/jsonschema-parquet"
     command: web

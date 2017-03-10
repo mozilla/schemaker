@@ -6,6 +6,9 @@ import tempfile
 import falcon
 
 
+JSONSCHEMA_PARQUET_PATH = os.environ.get('JSONSCHEMA_PARQUET_PATH')
+
+
 def validate_content_type(req, resp, resource, params):
     if (not req.content_type or
             req.content_type.split(';')[0] != 'application/json'):
@@ -25,7 +28,7 @@ class SchemaConvert:
                 file.close()
 
                 output = subprocess.check_output(
-                    ['/opt/npm/node_modules/.bin/jsonschema-parquet',
+                    [JSONSCHEMA_PARQUET_PATH,
                      'parquet',
                      '--deref',
                      file.name],
