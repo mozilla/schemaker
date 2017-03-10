@@ -46,4 +46,10 @@ docs/_build/
 # dotenv
 .env
 
+# npm stuff
+.npm
+
+# Shell and other history
 .bash_history
+.node_repl_history
+.python_history
