@@ -1,4 +1,4 @@
-coverage==4.3.4
+coverage==4.4.1
 falcon==1.1.0
 gunicorn==19.7.1
 py==1.4.33
